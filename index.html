@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desmontaje Redes Primarias</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Carga de Supabase y Script Principal -->
+
+</head>
+<body>
+  <main class="container">
+    <h2>Registro de Estructuras</h2>
+    
+    <form id="redesForm">
+      <!-- Identificador / Código de Foto -->
+      <fieldset class="highlight-fieldset">
+        <legend class="highlight-legend">Identificación de la Estructura</legend>
+        <div>
+          <label for="codigo_foto">CÓDIGO DE FOTO *</label>
+          <input type="text" id="codigo_foto" required placeholder="Código imagen" class="highlight-input">
+        </div>
+      </fieldset>
+
+      <!-- Postes y/o Soporte -->
+      <fieldset>
+        <legend>Poste / Soporte</legend>
+        <div class="grid-2">
+          <div>
+            <label for="poste_cant">Cantidad</label>
+            <input type="number" id="poste_cant" value="1">
+          </div>
+          <div>
+            <label for="poste_codigo_ntce">Código NTCE</label>
+            <input type="text" id="poste_codigo_ntce" placeholder="Ej. 4NP74922">
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <label for="poste_denominacion">Denominación del Poste</label>
+            <select id="poste_denominacion">
+              <option value="">-- Seleccionar --</option>
+              <option value="11/300">11/300</option>
+              <option value="12/200">12/200</option>
+              <option value="12/300">12/300</option>
+              <option value="13/100">13/100</option>
+              <option value="13/200">13/200</option>
+              <option value="13/300">13/300</option>
+              <option value="13/400">13/400</option>
+              <option value="13/500">13/500</option>
+              <option value="13/600">13/600</option>
+              <option value="15/200">15/200</option>
+              <option value="15/300">15/300</option>
+              <option value="15/400">15/400</option>
+              <option value="15/500">15/500</option>
+              <option value="15/600">15/600</option>
+              <option value="18/400">18/400</option>
+              <option value="18/700">18/700</option>
+              <option value="9/300">9/300</option>
+            </select>
+          </div>
+          <div>
+            <label for="poste_anio">Año Fabricación</label>
+            <input type="text" id="poste_anio" placeholder="Ej. 2015">
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <label for="poste_terreno">Tipo Terreno y Piso</label>
+            <select id="poste_terreno">
+              <option value="TN">TN - Terreno Normal</option>
+              <option value="TR">TR - Terreno Rocoso</option>
+              <option value="VR">VR - Vereda</option>
+              <option value="AS">AS - Asfalto</option>
+            </select>
+          </div>
+          <div>
+            <label for="poste_estado">Estado Poste</label>
+            <select id="poste_estado">
+              <option value="BD">BD - Bueno a desmontar</option>
+              <option value="MD">MD - Malo a desmontar</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Configuración del Armado -->
+      <fieldset>
+        <legend>Configuración del Armado</legend>
+        <div class="grid-3">
+          <div>
+            <label for="armado_funcion_primaria">Función Primaria</label>
+            <select id="armado_funcion_primaria">
+              <option value="Alineamiento">Alineamiento</option>
+              <option value="Anclaje">Anclaje</option>
+              <option value="Angulo">Angulo</option>
+              <option value="Terminal">Terminal</option>
+              <option value="Empalme">Empalme</option>
+            </select>
+          </div>
+          <div>
+            <label for="armado_funcion_secundaria">Función Secundaria</label>
+            <select id="armado_funcion_secundaria">
+              <option value="">-- Ninguno --</option>
+              <option value="Derivacion">Derivacion</option>
+              <option value="Subestacion">Subestacion</option>
+              <option value="Proteccion">Proteccion</option>
+            </select>
+          </div>
+          <div>
+            <label for="armado_configuracion">Configuración</label>
+            <select id="armado_configuracion">
+              <option value="Vertical">Vertical</option>
+              <option value="Triangular">Triangular</option>
+              <option value="Horizontal">Horizontal</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Cruceta / Extensor -->
+      <fieldset>
+        <legend>Cruceta / Extensor</legend>
+        <div class="grid-2">
+          <div>
+            <label for="cruceta_material">Cruceta/Extensor Material</label>
+            <select id="cruceta_material">
+              <option value="">-- No existe --</option>
+              <option value="CO">CO - CONCRETO</option>
+              <option value="MI">MI - MADERA IMPORTADO</option>
+              <option value="MN">MN - MADERA NACIONAL</option>
+              <option value="FG">FG - FIERRO</option>
+              <option value="FV">FV - FIBRA DE VIDRIO</option>
+            </select>
+          </div>
+          <div>
+            <label for="cruceta_cant">Cruceta Cant.</label>
+            <input type="number" id="cruceta_cant">
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div>
+            <label for="cruceta_longitud">Cruceta Long. (m)</label>
+            <input type="text" id="cruceta_longitud" placeholder="Ej. 1.5">
+          </div>
+          <div>
+            <label for="cruceta_tipo">Cruceta Tipo</label>
+            <select id="cruceta_tipo">
+              <option value="">-- No existe --</option> 
+              <option value="Asim">Asimétrico</option>
+              <option value="Sim">Simétrico</option>
+            </select>
+          </div>
+          <div>
+            <label for="cruceta_estado">Cruceta Estado</label>
+            <select id="cruceta_estado">
+              <option value="">-- No existe --</option>            
+              <option value="BD">BD</option>
+              <option value="MD">MD</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Aisladores -->
+      <fieldset>
+        <legend>Aisladores</legend>
+        <div class="grid-3">
+          <div>
+            <label for="aislador_pin_material">Aislador Pin Mat.</label>
+            <select id="aislador_pin_material">
+              <option value="">-- No existe --</option> 
+              <option value="POR">POR - Porcelana</option>
+              <option value="VID">VID - Vidrio</option>
+              <option value="POL">POL - Polimérico</option>
+            </select>
+          </div>
+          <div>
+            <label for="aislador_pin_cant">Aislador Pin Cant.</label>
+            <input type="number" id="aislador_pin_cant">
+          </div>
+          <div>
+            <label for="aislador_pin_estado">Aislador Pin Estado</label>
+            <select id="aislador_pin_estado">
+              <option value="">-- No existe --</option> 
+              <option value="BD">BD</option>
+              <option value="MD">MD</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div>
+            <label for="aislador_susp_material">Aislador Susp. Mat.</label>
+            <select id="aislador_susp_material">
+              <option value="">-- No existe --</option> 
+              <option value="POR">POR - Porcelana</option>
+              <option value="VID">VID - Vidrio</option>
+              <option value="POL">POL - Polimérico</option>
+            </select>
+          </div>
+          <div>
+            <label for="aislador_susp_cant">Aislador Susp. Cant.</label>
+            <input type="number" id="aislador_susp_cant">
+          </div>
+          <div>
+            <label for="aislador_susp_estado">Aislador Susp. Estado</label>
+            <select id="aislador_susp_estado">
+              <option value="">-- No existe --</option> 
+              <option value="BD">BD</option>
+              <option value="MD">MD</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Retenidas -->
+      <fieldset>
+        <legend>Retenidas</legend>
+        <div class="grid-3">
+          <div>
+            <label for="retenida_cant">Cant.</label>
+            <input type="number" id="retenida_cant">
+          </div>
+          <div>
+            <label for="retenida_tipo">Tipo Retenida</label>
+            <select id="retenida_tipo">
+              <option value="">-- No existe --</option> 
+              <option value="RI">RI - Inclinada</option>
+              <option value="RV">RV - Vertical</option>
+              <option value="RIY">RIY - En Y Inclinada</option>
+              <option value="RVY">RVY - En Y Vertical</option>
+              <option value="RVT">RVT - Tipo Violín</option>
+              <option value="RI+RV">RI+RV - Inclinada + Vertical</option>
+            </select>
+          </div>
+          <div>
+            <label for="retenida_estado">Estado</label>
+            <select id="retenida_estado">
+              <option value="">-- No existe --</option> 
+              <option value="BD">BD</option>
+              <option value="MD">MD</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <button type="submit" id="btnGuardar">Guardar Registro</button>
+    </form>
+
+    <div id="statusMsg" class="status-message"></div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
