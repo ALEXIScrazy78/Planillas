@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Desmontaje Redes Primarias</title>
   <link rel="stylesheet" href="styles.css">
-  <!-- Carga de Supabase y Script Principal -->
-
 </head>
 <body>
   <main class="container">
@@ -253,7 +251,10 @@
 
     <div id="statusMsg" class="status-message"></div>
   </main>
+
+  <!-- Carga del SDK de Supabase vía CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script type="module" src="/app.js"></script>
+  <!-- Script principal plano -->
+  <script src="app.js"></script>
 </body>
 </html>
