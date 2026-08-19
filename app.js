@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const SUPABASE_URL = 'https://zhcwqkuotstqlhtoelft.supabase.co';
   // Pega aquí la clave anon pública que dio STATUS 200 en tu prueba de consola
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpoY3dxa3VvdHN0cWxodG9lbGZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5OTg2NTYsImV4cCI6MjEwMjU3NDY1Nn0.J62qBZ0H1x3Aea9DWVnMkpd39zZac_7E5uZ6hcNXZps'; 
+  const SUPABASE_ANON_KEY = 'REEMPLAZAR_CLAVE';
+  //const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpoY3dxa3VvdHN0cWxodG9lbGZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5OTg2NTYsImV4cCI6MjEwMjU3NDY1Nn0.J62qBZ0H1x3Aea9DWVnMkpd39zZac_7E5uZ6hcNXZps'; 
 
   const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
