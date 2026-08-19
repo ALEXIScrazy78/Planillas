@@ -1,13 +1,14 @@
+import { createClient } from '@supabase/supabase-js';
+
+console.log("✅ app.js cargado e inicializado.");
+
+const SUPABASE_URL = 'https://zhcwqkuotstqlhtoelft.supabase.co';
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+// Instanciar el cliente usando la clave inyectada por Vite
+const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 document.addEventListener('DOMContentLoaded', () => {
-  console.log("✅ app.js cargado e inicializado.");
-
-  // Las variables se configuran de forma segura desde el panel de Vercel
-  const SUPABASE_URL = 'https://zhcwqkuotstqlhtoelft.supabase.co';
-  // Vercel / proceso de build reemplazará esto automáticamente
-  const SUPABASE_ANON_KEY = 'ENV_SUPABASE_ANON_KEY'; 
-
-  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
   const form = document.getElementById('redesForm');
   const statusMsg = document.getElementById('statusMsg');
 
