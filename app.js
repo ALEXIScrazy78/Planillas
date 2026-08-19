@@ -1,13 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log("✅ app.js cargado e inicializado.");
 
-  // Configuración de Supabase
-  const SUPABASE_URL = 'https://zhcwqkuotstqlhtoelft.supabase.co'; 
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpoY3dxa3VvdHN0cWxodG9lbGZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5OTg2NTYsImV4cCI6MjEwMjU3NDY1Nn0.J62qBZ0H1x3Aea9DWVnMkpd39zZac_7E5uZ6hcNXZps'; // Pega tu clave anon/public real
-
-  // RENOMBRADO: Usamos 'supabaseClient' en lugar de 'supabase'
-  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
   const form = document.getElementById('redesForm');
   const statusMsg = document.getElementById('statusMsg');
 
@@ -60,15 +53,22 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     try {
-      // Usamos el nuevo nombre del cliente aquí
-      const { data, error } = await supabaseClient
-        .from('estructuras_desmontaje')
-        .insert([formData])
-        .select();
+      // Petición al endpoint de Vercel
+      const response = await fetch('/api/guardar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
 
-      if (error) throw error;
+      const result = await response.json();
 
-      alert("¡Registro guardado exitosamente en Supabase!");
+      if (!response.ok) {
+        throw new Error(result.error || 'Error al procesar la solicitud');
+      }
+
+      alert("¡Registro guardado exitosamente!");
 
       if (statusMsg) {
         statusMsg.textContent = '¡Registro guardado correctamente!';
@@ -79,11 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
       form.reset();
 
     } catch (err) {
-      console.error("❌ Error Supabase:", err);
-      alert("Error al guardar: " + (err.message || JSON.stringify(err)));
+      console.error("❌ Error:", err);
+      alert("Error al guardar: " + err.message);
 
       if (statusMsg) {
-        statusMsg.textContent = 'Error: ' + (err.message || 'No se pudo guardar');
+        statusMsg.textContent = 'Error: ' + err.message;
         statusMsg.classList.add('error');
         statusMsg.style.display = 'block';
       }
