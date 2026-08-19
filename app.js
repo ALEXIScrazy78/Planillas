@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log("✅ app.js cargado e inicializado.");
 
+  const SUPABASE_URL = 'https://zhcwqkuotstqlhtoelft.supabase.co'; 
+  const SUPABASE_ANON_KEY = 'TU_CLAVE_ANON_AQUI'; // Pega tu clave anon/public real
+
+  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
   const form = document.getElementById('redesForm');
   const statusMsg = document.getElementById('statusMsg');
 
@@ -53,22 +58,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     try {
-      // Petición al endpoint de Vercel
-      const response = await fetch('/api/guardar', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
+      const { data, error } = await supabaseClient
+        .from('estructuras_desmontaje')
+        .insert([formData])
+        .select();
 
-      const result = await response.json();
+      if (error) throw error;
 
-      if (!response.ok) {
-        throw new Error(result.error || 'Error al procesar la solicitud');
-      }
-
-      alert("¡Registro guardado exitosamente!");
+      alert("¡Registro guardado exitosamente en Supabase!");
 
       if (statusMsg) {
         statusMsg.textContent = '¡Registro guardado correctamente!';
@@ -79,11 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
       form.reset();
 
     } catch (err) {
-      console.error("❌ Error:", err);
-      alert("Error al guardar: " + err.message);
+      console.error("❌ Error Supabase:", err);
+      alert("Error al guardar: " + (err.message || JSON.stringify(err)));
 
       if (statusMsg) {
-        statusMsg.textContent = 'Error: ' + err.message;
+        statusMsg.textContent = 'Error: ' + (err.message || 'No se pudo guardar');
         statusMsg.classList.add('error');
         statusMsg.style.display = 'block';
       }
