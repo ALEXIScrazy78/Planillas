@@ -8,6 +8,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const form = document.getElementById('redesForm');
   const statusMsg = document.getElementById('statusMsg');
+  const guiaCodigo = document.getElementById('guia_ultimo_codigo');
+
+  // --- FUNCIÓN PARA CONSULTAR EL ÚLTIMO CÓDIGO REGISTRADO ---
+  const obtenerUltimoCodigo = async () => {
+    try {
+      const { data, error } = await supabaseClient
+        .from('estructuras_desmontaje')
+        .select('codigo_foto')
+        .order('id', { ascending: false }) // Si no tienes columna 'id', usa 'created_at'
+        .limit(1);
+
+      if (error) throw error;
+
+      if (data && data.length > 0 && data[0].codigo_foto) {
+        if (guiaCodigo) {
+          guiaCodigo.textContent = `📌 Último código registrado: ${data[0].codigo_foto}`;
+        }
+      } else {
+        if (guiaCodigo) {
+          guiaCodigo.textContent = `📌 No hay registros previos.`;
+        }
+      }
+    } catch (err) {
+      console.warn("⚠️ No se pudo obtener el último código:", err.message);
+      if (guiaCodigo) {
+        guiaCodigo.textContent = `📌 Último código: No disponible`;
+      }
+    }
+  };
+
+  // Cargar el último código al abrir la aplicación
+  obtenerUltimoCodigo();
 
   if (!form) return;
 
