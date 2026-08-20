@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log("✅ app.js cargado e inicializado.");
 
   const SUPABASE_URL = 'https://zhcwqkuotstqlhtoelft.supabase.co';
-  // Pega aquí la clave anon pública que dio STATUS 200 en tu prueba de consola
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpoY3dxa3VvdHN0cWxodG9lbGZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5OTg2NTYsImV4cCI6MjEwMjU3NDY1Nn0.J62qBZ0H1x3Aea9DWVnMkpd39zZac_7E5uZ6hcNXZps'; 
 
   const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -36,26 +35,41 @@ document.addEventListener('DOMContentLoaded', () => {
       poste_cant: getNumValue('poste_cant'),
       poste_codigo_ntce: getStrValue('poste_codigo_ntce'),
       poste_denominacion: getStrValue('poste_denominacion'),
-      poste_anio: getStrValue('poste_anio'),
+      poste_anio: '0',
       poste_terreno: getStrValue('poste_terreno'),
-      poste_estado: getStrValue('poste_estado'),
+      
+      // Estado por defecto BD
+      poste_estado: 'BD',
+
       armado_funcion_primaria: getStrValue('armado_funcion_primaria'),
       armado_funcion_secundaria: getStrValue('armado_funcion_secundaria'),
       armado_configuracion: getStrValue('armado_configuracion'),
+
       cruceta_material: getStrValue('cruceta_material'),
       cruceta_cant: getNumValue('cruceta_cant'),
       cruceta_longitud: getStrValue('cruceta_longitud'),
       cruceta_tipo: getStrValue('cruceta_tipo'),
-      cruceta_estado: getStrValue('cruceta_estado'),
+      
+      // Estado por defecto BD
+      cruceta_estado: 'BD',
+
       aislador_pin_material: getStrValue('aislador_pin_material'),
       aislador_pin_cant: getNumValue('aislador_pin_cant'),
-      aislador_pin_estado: getStrValue('aislador_pin_estado'),
+      
+      // Estado por defecto BD
+      aislador_pin_estado: 'BD',
+
       aislador_susp_material: getStrValue('aislador_susp_material'),
       aislador_susp_cant: getNumValue('aislador_susp_cant'),
-      aislador_susp_estado: getStrValue('aislador_susp_estado'),
+      
+      // Estado por defecto BD
+      aislador_susp_estado: 'BD',
+
       retenida_cant: getNumValue('retenida_cant'),
       retenida_tipo: getStrValue('retenida_tipo'),
-      retenida_estado: getStrValue('retenida_estado')
+
+      // Estado por defecto BD
+      retenida_estado: 'BD'
     };
 
     try {
